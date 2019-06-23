@@ -122,27 +122,13 @@ class Unit
             return;
         }
 
-        $expectedFieldNames = [
-            'id',
-            'name',
-            'status',
-            'sum',
-            'data',
-            'updated_at',
-        ];
+        // Получение свойств класса Unit, как ключей массива
+        $expectedFieldNames = array_keys((array) new Unit());
 
         if ($arrDiff = \array_diff($fieldNames, $expectedFieldNames)) {
             throw new \RuntimeException(
                 sprintf('Поля "%s" отсутствуют в Unit', \implode(', ', $arrDiff))
             );
-        }
-
-        foreach ($fieldNames as $fieldName) {
-            if (!in_array($fieldName, $expectedFieldNames)) {
-                throw new \RuntimeException(sprintf(
-                    'Поле % отсутсвует в Unit'
-                ));
-            }
         }
     }
 }
